@@ -111,11 +111,30 @@ class MainActivity : AppCompatActivity() {
                 binding.root.setBackgroundResource(R.drawable.sunny_background)
                 binding.lottieAnimationView.setAnimation(R.raw.sun)
             }
-
-            "Haze" , "Pertly Clouds" , "Overcast" , "Mist" , "Foggy" , "Clouds" ->{
+//all are type of cloude , i cAN  also use all in one
+            "Clouds" ->{
                 binding.root.setBackgroundResource(R.drawable.colud_background)
                 binding.lottieAnimationView.setAnimation(R.raw.cloud)
             }
+            "Haze" , "Mist" ->{
+                binding.root.setBackgroundResource(R.drawable.haze_scr)
+                binding.lottieAnimationView.setAnimation(R.raw.cloud)
+            }
+            "Pertly Clouds" ->{
+                binding.root.setBackgroundResource(R.drawable.pertly_clouds)
+                binding.lottieAnimationView.setAnimation(R.raw.cloud)
+            }
+            "Overcast" ->{
+                binding.root.setBackgroundResource(R.drawable.overcast_clouds)
+                binding.lottieAnimationView.setAnimation(R.raw.cloud)
+            }
+            "Foggy" ->{
+                binding.root.setBackgroundResource(R.drawable.foggy_scr)
+                binding.lottieAnimationView.setAnimation(R.raw.cloud)
+            }
+//after that rain will start
+
+
             "Light Rain" , "Drizzle" , " Moderate Rain" , "Showers" , "Heavy Rain" -> {
                 binding.root.setBackgroundResource(R.drawable.rain_background)
                 binding.lottieAnimationView.setAnimation(R.raw.rain)
