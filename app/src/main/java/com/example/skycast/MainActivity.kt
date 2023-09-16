@@ -135,7 +135,7 @@ class MainActivity : AppCompatActivity() {
 //after that rain will start
 
 
-            "Light Rain" , "Drizzle" , " Moderate Rain" , "Showers" , "Heavy Rain" -> {
+            "Light Rain" , "Drizzle" , " Moderate Rain" , "Showers" , "Heavy Rain" ,"Thunderstorm" -> {
                 binding.root.setBackgroundResource(R.drawable.rain_background)
                 binding.lottieAnimationView.setAnimation(R.raw.rain)
             }
