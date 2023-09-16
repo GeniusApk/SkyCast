@@ -14,10 +14,6 @@ This SkyCast app wheare you can check current weather
 
 🌆 Beautiful Themes: Personalize your weather experience with a variety of stunning themes. Match the app's appearance to your mood or surroundings.
 
-🌐 Multiple Languages: SkyCast supports multiple languages, making it accessible to users from all corners of the globe.
-
-📈 Historical Weather Data: Explore past weather conditions to gain insights into seasonal trends and plan for the future.
-
 ⭐ User-Friendly Interface: SkyCast's intuitive design ensures that weather information is easily accessible, even for first-time users.
 
 🌟 Ad-Free Experience: Enjoy a seamless and distraction-free experience while checking the weather.
