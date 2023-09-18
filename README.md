@@ -24,7 +24,9 @@ Don't let the weather surprise you. With SkyCast, you're always one step ahead.
 
 # Screenshot
 
-
+![fast](https://github.com/in-deep-dive/SkyCast/assets/101592615/a8812f76-5eea-4244-844d-59ab0ab1a112)
+![sec](https://github.com/in-deep-dive/SkyCast/assets/101592615/d0d78795-ebd4-4751-8c13-36cb75e7c10b)
+![thrd](https://github.com/in-deep-dive/SkyCast/assets/101592615/a55cfa57-f61b-4169-981c-d0ee0a0bd4cf)
 
 
 
