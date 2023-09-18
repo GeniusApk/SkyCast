@@ -21,3 +21,16 @@ This SkyCast app wheare you can check current weather
 Download SkyCast today and embark on a journey through weather like never before. Whether you're a weather enthusiast, a traveler, or someone simply planning their day, SkyCast is the perfect companion to keep you informed and inspired. Say goodbye to dull weather apps and hello to a world of weather wonder with SkyCast!
 
 Don't let the weather surprise you. With SkyCast, you're always one step ahead.
+
+# Screenshot
+
+
+
+
+
+## 🔗 Links
+
+[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/mohd-aakib-0546ab272/)
+
+[![linkedin](https://img.shields.io/badge/instagram-bc2a8d?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/_aakib__21/)
+
