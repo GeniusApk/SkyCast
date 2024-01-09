@@ -14,6 +14,7 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 import java.util.concurrent.locks.Condition
+import java.util.Calendar
 
 //
 
@@ -54,21 +55,26 @@ class MainActivity : AppCompatActivity() {
             .baseUrl("https://api.openweathermap.org/data/2.5/")
             .build()
             .create(ApiInterface::class.java)
-        val response = retrofit.getWeatherData(cityName , "3be41e2a359cb318dc3b06d237a9e1ee" , "metric")
-        response.enqueue(object : Callback<WeatherApp>{
+        val response = retrofit.getWeatherData(cityName, "3be41e2a359cb318dc3b06d237a9e1ee", "metric")
+        response.enqueue(object : Callback<WeatherApp> {
             override fun onResponse(call: Call<WeatherApp>, response: Response<WeatherApp>) {
                 if (response.isSuccessful) {
                     val responseBody = response.body()
                     if (responseBody != null) {
+
+                        val sunRise = responseBody.sys.sunrise.toLong()
+                        val sunSet = responseBody.sys.sunset.toLong()
+                        val condition = responseBody.weather.firstOrNull()?.main ?: "unknown"
+                        changesImagesAcoddingToWearther(condition, sunRise, sunSet)
+
+                        // Now, you can use these variables throughout the function
                         val temperature = responseBody.main.temp.toString()
                         val humidity = responseBody.main.humidity
                         val windSpeed = responseBody.wind.speed
-                        val sunRise = responseBody.sys.sunrise.toLong()
                         val seaLevel = responseBody.main.pressure
-                        val condition = responseBody.weather.firstOrNull()?.main?:"unknown"
-                        val sunSet = responseBody.sys.sunset.toLong()
                         val maxTem = responseBody.main.temp_max
                         val minTem = responseBody.main.temp_min
+
 
 
                         Log.d("WeatherApp", "Temperature: $temperature")
@@ -86,7 +92,7 @@ class MainActivity : AppCompatActivity() {
                             binding.date.text=  date()
                             binding.cityname.text ="$cityName"
 
-                        changesImagesAcoddingToWearther(condition)
+                        changesImagesAcoddingToWearther(condition ?: "unknown", sunRise, sunSet)
 
                     } else {
                         Log.e("WeatherApp", "Response body is null")
@@ -104,51 +110,58 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    private fun changesImagesAcoddingToWearther(condition: String) {
-        when(condition){
+    private fun changesImagesAcoddingToWearther(condition: String, sunrise: Long, sunset: Long) {
+        val currentTime = System.currentTimeMillis() / 1000 // Convert to seconds
+        val isNight = currentTime < sunrise || currentTime > sunset
 
-            "Clear Sky" , "Sunny" , "Clear" ->{
+        when {
+            isNight -> {
+                binding.root.setBackgroundResource(R.drawable.night_scr)
+                binding.lottieAnimationView.setAnimation(R.raw.moon)
+            }
+            condition in arrayOf("Clear Sky", "Sunny", "Clear") -> {
                 binding.root.setBackgroundResource(R.drawable.sunny_background)
                 binding.lottieAnimationView.setAnimation(R.raw.sun)
             }
-//all are type of cloude , i cAN  also use all in one
-            "Clouds" ->{
+            condition == "Clouds" -> {
                 binding.root.setBackgroundResource(R.drawable.colud_background)
                 binding.lottieAnimationView.setAnimation(R.raw.cloud)
             }
-            "Haze" , "Mist" ->{
+            condition in arrayOf("Haze", "Mist") -> {
                 binding.root.setBackgroundResource(R.drawable.haze_scr)
                 binding.lottieAnimationView.setAnimation(R.raw.cloud)
             }
-            "Pertly Clouds" ->{
+            condition == "Pertly Clouds" -> {
                 binding.root.setBackgroundResource(R.drawable.pertly_clouds)
                 binding.lottieAnimationView.setAnimation(R.raw.cloud)
             }
-            "Overcast" ->{
+            condition == "Thunderstorm" -> {
+                binding.root.setBackgroundResource(R.drawable.thunderstormphoto)
+                binding.lottieAnimationView.setAnimation(R.raw.thunderstorm)
+            }
+            condition == "Overcast" -> {
                 binding.root.setBackgroundResource(R.drawable.overcast_clouds)
                 binding.lottieAnimationView.setAnimation(R.raw.cloud)
             }
-            "Foggy" ->{
+            condition == "Foggy" -> {
                 binding.root.setBackgroundResource(R.drawable.foggy_scr)
                 binding.lottieAnimationView.setAnimation(R.raw.cloud)
             }
-//after that rain will start
-
-
-            "Light Rain" , "Drizzle" , " Moderate Rain" , "Showers" , "Heavy Rain" ,"Thunderstorm" -> {
+            condition in arrayOf(
+                "Light Rain", "Drizzle", "Moderate Rain",
+                "Showers", "Heavy Rain", "Thunderstorm"
+            ) -> {
                 binding.root.setBackgroundResource(R.drawable.rain_background)
                 binding.lottieAnimationView.setAnimation(R.raw.rain)
             }
-            "Light Snow"  , "Moderate Snow","Heavy Snow" , " Blizzard" -> {
-                binding.root.setBackgroundResource(R.drawable.rain_background)
-                binding.lottieAnimationView.setAnimation(R.raw.rain)
-
+            condition in arrayOf("Light Snow", "Moderate Snow", "Heavy Snow", "Blizzard") -> {
+                binding.root.setBackgroundResource(R.drawable.snow_background)
+                binding.lottieAnimationView.setAnimation(R.raw.snow)
             }
-            else ->{
+            else -> {
                 binding.root.setBackgroundResource(R.drawable.sunny_background)
                 binding.lottieAnimationView.setAnimation(R.raw.sun)
             }
-
         }
         binding.lottieAnimationView.playAnimation()
     }

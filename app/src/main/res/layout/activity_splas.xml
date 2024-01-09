@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/spl_scer_tow"
+    android:background="@drawable/night_scr"
     tools:context=".splasActivity">
 
     <ImageView
